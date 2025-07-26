@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body { font-family: sans-serif; text-align: center; }
+.grid { display: grid; grid-template-columns: repeat(31, 25px); gap: 3px; justify-content: center; }
+.cell {
+  width: 25px; height: 25px; border: 1px solid #000; display: flex;
+  align-items: center; justify-content: center; cursor: pointer;
+  font-size: 10px; font-weight: bold;
+}
+.jan { background: #CCE5FF; }
+.feb { background: #E6FFCC; }
+.mar { background: #FFEACC; }
+.apr { background: #E5CCFF; }
+.may { background: #CCFFFF; }
+.jun { background: #FFCCCC; }
+.jul { background: #F9FFCC; }
+.aug { background: #DDEEFF; }
+.sep { background: #FFFFCC; }
+.oct { background: #F2CCFF; }
+.nov { background: #E6FFE6; }
+.dec { background: #FFE6CC; }
+.done { background: #4CAF50 !important; color: white; }
+</style>
+</head>
+<body>
+<h2>Interactive Year 2026 Grid</h2>
+<div class="grid" id="grid"></div>
+<script>
+const grid = document.getElementById('grid');
+const months = [
+  ['jan',31], ['feb',28], ['mar',31], ['apr',30], ['may',31], ['jun',30],
+  ['jul',31], ['aug',31], ['sep',30], ['oct',31], ['nov',30], ['dec',31]
+];
+let day = 1;
+months.forEach(([cls,days]) => {
+  for(let i=0;i<days;i++){
+    const cell = document.createElement('div');
+    cell.className = 'cell ' + cls;
+    cell.textContent = day++;
+    cell.onclick = () => cell.classList.toggle('done');
+    grid.appendChild(cell);
+  }
+});
+</script>
+</body>
+</html>
